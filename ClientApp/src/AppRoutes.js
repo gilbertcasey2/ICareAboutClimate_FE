@@ -1,10 +1,11 @@
-import Contribute from "./components/Contribute";
-import ClimateResources from "./components/ClimateResources";
-import Home from "./components/Home";
+import Contribute from "./components/contribute";
+import ClimateResources from "./components/climateResources";
+import Home from "./components/home";
 
 const AppRoutes = [
   {
     index: true,
+    path: '/',
     element: <Home />
   },
   {

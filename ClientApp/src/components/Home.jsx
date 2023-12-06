@@ -1,10 +1,12 @@
 import React from 'react';
+import HomeOne from './homePage/homeOne';
+import HomeTwo from './homePage/homeTwo';
 
 const Home = (props) => {
 
   return <section className="home">
-      <h1>I am Home</h1>
-      <p>I am home thing</p>
+      <HomeOne />
+      <HomeTwo />
   </section>
 }
 

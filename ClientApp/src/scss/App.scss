@@ -1,0 +1,25 @@
+$purple: #452B55;
+$dark-purple: #26172F;
+$blue: #6284A1;
+$dark-blue: #365977;
+$light-blue: #E1EDF1;
+$transparent-purple: rgba(69,43,85,.05);
+$semi-trans-purple: rgba(69,43,85,.5);
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.App {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Montserrat", sans-serif;
+}
+
+header {
+  padding: 20px 30px 20px 30px;
+}
