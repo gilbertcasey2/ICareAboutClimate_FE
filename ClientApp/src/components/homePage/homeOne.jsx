@@ -6,13 +6,13 @@ import Water from "../../img/water.png";
 const HomeOne = (props) => {
 
   return <section className="homeOne">
-    <h2>I care about</h2>
-    <h1>Climate Change.</h1>
+    <h3>I care about</h3>
+    <h1>climate change.</h1>
     <h4>A research project to understand how different communities across Portland, Maine feel about and engage with climate change.</h4>
     <Button isMain={true} buttonText="Make Your Voice Heard"></Button>
     <Button isMain={false} buttonText="Join The Fight"></Button>
-    <img src={LeftMountain} alt="Mountains" /> 
-    <img src={Water} alt="Melting Water" /> 
+    <img src={LeftMountain} className="mountains" alt="Mountains" /> 
+    <img src={Water} className="water" alt="Melting Water" /> 
 
   </section>
 }
