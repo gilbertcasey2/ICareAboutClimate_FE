@@ -1,0 +1,1 @@
+export const CENSUS_BLOCK_COUNT = 20;
