@@ -1,20 +1,37 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
-import { Home } from "./components/Home";
+import Contribute from "./components/contribute";
+import ClimateResources from "./components/climateResources";
+import Home from "./components/home";
+import CompletedForm from "./components/completedForm";
+import { CENSUS_BLOCK_COUNT } from "./settings";
 
-const AppRoutes = [
+var AppRoutes = [
   {
     index: true,
+    path: '/',
     element: <Home />
   },
   {
-    path: '/counter',
-    element: <Counter />
+    path: '/contribute',
+    element: <Contribute formIndex={-1}/>
   },
   {
-    path: '/fetch-data',
-    element: <FetchData />
+    path: '/climate-resources',
+    element: <ClimateResources />
+  },
+  {
+    path: '/complete',
+    element: <CompletedForm />
   }
 ];
+
+for (var i = 0; i < CENSUS_BLOCK_COUNT; i++) {
+  AppRoutes.push(
+    {
+      index: true,
+      path: '/contribute/'+i,
+      element: <Contribute formIndex={i} />
+    }
+  );
+}
 
 export default AppRoutes;
