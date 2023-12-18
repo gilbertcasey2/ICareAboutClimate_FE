@@ -38,7 +38,7 @@ export async function formArrival(data) {
 
 export async function submitQuestion(data) {
     var url = process.env.REACT_APP_DOMAIN + 'api/submit-question';
-
+    console.log("The URL: " + url)
     const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
