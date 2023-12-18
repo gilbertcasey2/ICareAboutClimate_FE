@@ -24,3 +24,5 @@ yarn-error.log*
 
 *bin/*
 *obj/*
+
+local.settings.json
