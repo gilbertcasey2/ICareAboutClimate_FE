@@ -3,13 +3,15 @@ import { Navigate } from 'react-router-dom';
 
 import FormQuestion from "./subComponents/formQuestion";
 import questions from "./formQuestions"
-import { submitForm } from "./FormService";
+import { formArrival, submitForm, submitQuestion } from "./FormService";
 
-const ContributeForm = (props) => {
+import { v4 as uuidv4 } from 'uuid';
+
+const ContributeForm = ({formIndex}) => {
     const [formDirty, setFormDirty] = useState(false)
 
-    const [requiredQuestions, setRequiredQuestions] = useState([])
-    const [answeredQuestions, setAnsweredQuestions] = useState([])
+    const [requiredQuestions, setRequiredQuestions] = useState([]);
+    const [answeredQuestions, setAnsweredQuestions] = useState([]);
     const [redirectCompleted, setRedirectCompleted] = useState();
 
     async function handleSubmit(e) {
@@ -26,21 +28,32 @@ const ContributeForm = (props) => {
     }
 
     useEffect(() => {
+        if (localStorage.getItem('formID') === null) {
+            var id = uuidv4()
+            localStorage.setItem('formID', id);
+            formArrival({"storeageID": id, "formIndex": formIndex});
+        }
         for (let i=0; i < questions.length; i++) {
             if (questions[i].isRequired) {
                 setRequiredQuestions(prevState => ([...prevState, i]));
             }
         };
-    }, [])
+    }, [formIndex])
 
     const formChanged = (count, index) => {
-        setAnsweredQuestions(prevState => ([...prevState, {"questionNumber" : count, "answer" : index}]));
-        console.log(answeredQuestions)
+
+        // send question answer to backend
+        submitQuestion({"userID": localStorage.getItem('formID'), "questionIndex" : count, "answerIndex" : index})
+
+        // update answered questions
+        setAnsweredQuestions(prevState => ([...prevState, {"questionIndex" : count, "answerIndex" : index}]));
         var isDone = true;
+
+        // See if all required questions are answered
         for (let i=0; i < requiredQuestions.length; i++) {
             var isAnswered = false;
             for(let j=0; j < answeredQuestions.length;j++) {
-                if (answeredQuestions[j].questionNumber === requiredQuestions[i] || requiredQuestions[i] === count) {
+                if (answeredQuestions[j].questionIndex === requiredQuestions[i] || requiredQuestions[i] === count) {
                     isAnswered = true;
                 }
             }
@@ -65,7 +78,7 @@ const ContributeForm = (props) => {
     } else {
         return <form onSubmit={handleSubmit}>
             {getFormQuestions}
-            {!formDirty && <p>Please fill out all required fields.</p>}
+            {!formDirty && <p>Please fill out all required fields before submitting!</p>}
             <input type="submit" className={formDirty ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
         </form>
     }

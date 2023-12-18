@@ -12,7 +12,7 @@ var AppRoutes = [
   },
   {
     path: '/contribute',
-    element: <Contribute />
+    element: <Contribute formIndex={-1}/>
   },
   {
     path: '/climate-resources',
@@ -29,7 +29,7 @@ for (var i = 0; i < CENSUS_BLOCK_COUNT; i++) {
     {
       index: true,
       path: '/contribute/'+i,
-      element: <Contribute index={i} />
+      element: <Contribute formIndex={i} />
     }
   );
 }
