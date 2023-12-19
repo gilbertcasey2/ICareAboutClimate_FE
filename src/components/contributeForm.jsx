@@ -16,7 +16,7 @@ const ContributeForm = ({formIndex}) => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        var result = await submitForm(answeredQuestions);
+        var result = await submitForm(answeredQuestions,localStorage.getItem('formID'), formIndex);
         localStorage.setItem('formCompleted', true)
         if (result != null) {
             setFormDirty(false)
@@ -43,7 +43,7 @@ const ContributeForm = ({formIndex}) => {
     const formChanged = (count, index) => {
 
         // send question answer to backend
-        submitQuestion({"userID": localStorage.getItem('formID'), "questionIndex" : count, "answerIndex" : index})
+        submitQuestion({"userID": localStorage.getItem('formID'), "questionIndex" : count, "answerIndex" : index, "formIndex" : formIndex})
 
         // update answered questions
         setAnsweredQuestions(prevState => ([...prevState, {"questionIndex" : count, "answerIndex" : index}]));
@@ -78,7 +78,7 @@ const ContributeForm = ({formIndex}) => {
     } else {
         return <form onSubmit={handleSubmit}>
             {getFormQuestions}
-            {!formDirty && <p>Please fill out all required fields before submitting!</p>}
+            {!formDirty && <p className="fillAll">Please fill out all required fields before submitting!</p>}
             <input type="submit" className={formDirty ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
         </form>
     }

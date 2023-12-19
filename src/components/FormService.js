@@ -1,8 +1,8 @@
 
-export async function submitForm(data) {
+export async function submitForm(data, storeageID, formIndex) {
     var url = process.env.REACT_APP_DOMAIN + 'api/submit-form';
-    var questionsDict = { "responses": data }
-    var questionsWrapper = {"questions": JSON.stringify(questionsDict)}
+    var questionsDict = {"responses": data }
+    var questionsWrapper = {"storeageID": storeageID, "formIndex" : formIndex, "questions": JSON.stringify(questionsDict)}
     const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -14,7 +14,7 @@ export async function submitForm(data) {
         console.log("Error submitting form. Status: " + response.status)
         return null;
     } else {
-        return await response.json();
+        return await response.ok;
     }
 }
 
@@ -32,13 +32,13 @@ export async function formArrival(data) {
         console.log("Error submitting form. Status: " + response.status)
         return null;
     } else {
-        return await response.json();
+        return await response.ok;
     }
 }
 
 export async function submitQuestion(data) {
     var url = process.env.REACT_APP_DOMAIN + 'api/submit-question';
-
+    console.log("The URL: " + url)
     const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,6 +50,6 @@ export async function submitQuestion(data) {
         console.log("Error submitting form. Status: " + response.status)
         return null;
     } else {
-        return await response.json();
+        return await response.ok;
     }
 }

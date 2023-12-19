@@ -18,6 +18,7 @@ const Contribute = ({formIndex}) => {
         return <section className="contribute">
             <h1>How do you feel about climate change?</h1>
             <p className="subhead">Don’t worry- we’ll keep your answers private and never share them with anyone else.</p>
+            <p className="italic subtext">Takes about a minute and a half to complete</p>
             <ContributeForm formIndex={formIndex} />
         </section>
     }
