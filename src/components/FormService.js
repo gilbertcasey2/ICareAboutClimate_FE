@@ -1,6 +1,8 @@
+var base_url = process.env.REACT_APP_DOMAIN ? process.env.REACT_APP_DOMAIN : "/"
+
 
 export async function submitForm(data, storeageID, formIndex) {
-    var url = process.env.REACT_APP_DOMAIN + 'api/submit-form';
+    var url = base_url + 'api/submit-form';
     var questionsDict = {"responses": data }
     var questionsWrapper = {"storeageID": storeageID, "formIndex" : formIndex, "questions": JSON.stringify(questionsDict)}
     const response = await fetch(url, {
@@ -19,7 +21,7 @@ export async function submitForm(data, storeageID, formIndex) {
 }
 
 export async function formArrival(data) {
-    var url = process.env.REACT_APP_DOMAIN + 'api/form-arrival';
+    var url = base_url + 'api/form-arrival';
 
     const response = await fetch(url, {
         method: 'POST',
@@ -37,7 +39,7 @@ export async function formArrival(data) {
 }
 
 export async function submitQuestion(data) {
-    var url = process.env.REACT_APP_DOMAIN + 'api/submit-question';
+    var url = base_url + 'api/submit-question';
     console.log("The URL: " + url)
     const response = await fetch(url, {
         method: 'POST',
