@@ -78,7 +78,7 @@ const ContributeForm = ({formIndex}) => {
     } else {
         return <form onSubmit={handleSubmit}>
             {getFormQuestions}
-            {!formDirty && <p>Please fill out all required fields before submitting!</p>}
+            {!formDirty && <p className="fillAll">Please fill out all required fields before submitting!</p>}
             <input type="submit" className={formDirty ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
         </form>
     }
