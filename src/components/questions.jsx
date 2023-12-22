@@ -1,9 +1,10 @@
 export class Question {
-    constructor(question, options, isRequired=false, hasFreeType=false) {
+    constructor(question, options, isRequired=false, hasFreeType=false, multipleOptions=false) {
         this.question = question;
         this.options = options;
         this.isRequired = isRequired;
         this.hasFreeType = hasFreeType;
+        this.multipleOptions = multipleOptions;
     }
 }
 
@@ -15,11 +16,11 @@ questions.push(new Question("Maine has committed to the goal of reducing this po
 
 questions.push(new Question("How would you rank climate change as a political priority?", ["1", "2", "3", "4", "5 or greater"], true));
 
-questions.push(new Question("In the past six months, have you engaged politically with climate change in any of the following ways?", ["Calling or emailing your elected officials", "Voting, advocating for, or commenting on climate legislation", "Discussing climate legislation with friends or family", "Other (please specify)"], true, true));
+questions.push(new Question("In the past six months, have you engaged politically with climate change in any of the following ways?", ["Calling or emailing your elected officials", "Voting, advocating for, or commenting on climate legislation", "Discussing climate legislation with friends or family", "Other (please specify)"], true, true, true));
 
 questions.push(new Question("How old are you?", ["< 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65<"]));
 
-questions.push(new Question("How would you describe yourself?", ["Black or African American", "American Indian or Alaska Native", "Native Hawaiian or other Pacific Islander", "Asian", "White", "Multiple races", "Some other race"]));
+questions.push(new Question("How would you describe yourself?", ["Black or African American", "American Indian or Alaska Native", "Native Hawaiian or other Pacific Islander", "Asian", "White", "Multiple races", "Some other race"], false, false, true));
 
 questions.push(new Question("With which gender do you most identify?", ["Female", "Male", "Nonbinary", "Other"]));
 

@@ -2,7 +2,7 @@ import {React, useState, useEffect} from "react"
 import { Navigate } from 'react-router-dom';
 
 import FormQuestion from "./subComponents/formQuestion";
-import questions from "./formQuestions"
+import questions from "./questions"
 import { formArrival, submitForm, submitQuestion } from "./FormService";
 
 import { v4 as uuidv4 } from 'uuid';
@@ -40,13 +40,13 @@ const ContributeForm = ({formIndex}) => {
         };
     }, [formIndex])
 
-    const formChanged = (count, index) => {
+    const formChanged = (count, index, multipleOptions, response=null) => {
 
         // send question answer to backend
-        submitQuestion({"userID": localStorage.getItem('formID'), "questionIndex" : count, "answerIndex" : index, "formIndex" : formIndex})
+        submitQuestion(index, localStorage.getItem('formID'), count, formIndex, multipleOptions, response)
 
         // update answered questions
-        setAnsweredQuestions(prevState => ([...prevState, {"questionIndex" : count, "answerIndex" : index}]));
+        setAnsweredQuestions(prevState => ([...prevState, {"questionIndex" : count, "answerIndex" : index, "otherAnswer": response, "isMultipleChoice": multipleOptions}]));
         var isDone = true;
 
         // See if all required questions are answered
@@ -66,7 +66,7 @@ const ContributeForm = ({formIndex}) => {
     }
 
     const displayQuestion = (question, index) => {
-        return <FormQuestion key={"question" + index} changeForm={formChanged} question={question.question} options={question.options} count={index} isRequired={question.isRequired} hasFreeType={question.hasFreeType} />
+        return <FormQuestion key={"question" + index} changeForm={formChanged} question={question.question} options={question.options} count={index} isRequired={question.isRequired} hasFreeType={question.hasFreeType} multipleOptions={question.multipleOptions} />
     }
 
     const getFormQuestions = questions.map((question, index) => {
