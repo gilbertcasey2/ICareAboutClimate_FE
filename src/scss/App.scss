@@ -362,7 +362,7 @@ footer {
 
 /* Contribute Page (form) */
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
@@ -379,9 +379,12 @@ input[type="radio"] {
   top: 3px;
   cursor: pointer;
 }
-input[type="radio"]:checked {
+input[type="radio"]:checked, input[type="checkbox"]:checked {
   background-color: $darkBlue;
   border: 2px solid white;
+}
+input[type="checkbox"] {
+  border-radius: 2px;
 }
 .contribute {
   width: 100%;
@@ -436,6 +439,25 @@ input[type="radio"]:checked {
     label:hover {
       background-color: $beige;
       border: solid 1px $darkBeige;
+    }
+    .inputHolder {
+      display: block;
+      padding: 5px 0px 0px 35px;
+    }
+    .optionalInput {
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid rgba(1,56,90,.64);
+      height: 35px;
+      background-color: $almostWhite;
+    }
+    .optionalInput:hover {
+      border: 1px solid rgba(1,56,90,1);
+    }
+    .inactive {
+      border: 1px solid rgba(1,56,90,.2);
+      pointer-events:none;
+      background-color: rgba(255,255,255,.3)
     }
   }
 }

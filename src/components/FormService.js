@@ -38,13 +38,15 @@ export async function formArrival(data) {
     }
 }
 
-export async function submitQuestion(data) {
+export async function submitQuestion(index, user_ID, questionIndex, formIndex, multipleOptions, otherAnswer=null) {
     var url = base_url + 'api/submit-question';
+
+    var answerData = {"userID": user_ID, "questionIndex":questionIndex, "answerIndex": index, "formIndex" : formIndex, "multipleOptions": multipleOptions, "otherAnswer" : otherAnswer}
     console.log("The URL: " + url)
     const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(answerData)
     }).catch((e) => {
         console.log("Request to submit form returned an error " + e);
     });
