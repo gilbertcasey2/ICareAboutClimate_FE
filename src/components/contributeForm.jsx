@@ -6,6 +6,7 @@ import questions from "./questions"
 import { formArrival, submitForm, submitQuestion } from "./FormService";
 
 import { v4 as uuidv4 } from 'uuid';
+import CensusMap from "./subComponents/censusMap";
 
 const ContributeForm = ({formIndex}) => {
     const [formDirty, setFormDirty] = useState(false)
@@ -33,11 +34,14 @@ const ContributeForm = ({formIndex}) => {
             localStorage.setItem('formID', id);
             formArrival({"storeageID": id, "formIndex": formIndex});
         }
+        // add all required questions
         for (let i=0; i < questions.length; i++) {
             if (questions[i].isRequired) {
                 setRequiredQuestions(prevState => ([...prevState, i]));
             }
         };
+        // now add location question, which is always required
+        setRequiredQuestions(prevState => ([...prevState, questions.length]))
     }, [formIndex])
 
     const formChanged = (count, index, multipleOptions, response=null) => {
@@ -47,22 +51,22 @@ const ContributeForm = ({formIndex}) => {
 
         // update answered questions
         setAnsweredQuestions(prevState => ([...prevState, {"questionIndex" : count, "answerIndex" : index, "otherAnswer": response, "isMultipleChoice": multipleOptions}]));
-        var isDone = true;
+        // var isDone = true;
 
-        // See if all required questions are answered
-        for (let i=0; i < requiredQuestions.length; i++) {
-            var isAnswered = false;
-            for(let j=0; j < answeredQuestions.length;j++) {
-                if (answeredQuestions[j].questionIndex === requiredQuestions[i] || requiredQuestions[i] === count) {
-                    isAnswered = true;
-                }
-            }
-            if (!isAnswered) {
-                isDone = false;
-                break;
-            }
-        }
-        isDone && setFormDirty(true)
+        // // See if all required questions are answered
+        // for (let i=0; i < requiredQuestions.length; i++) {
+        //     var isAnswered = false;
+        //     for(let j=0; j < answeredQuestions.length;j++) {
+        //         if (answeredQuestions[j].questionIndex === requiredQuestions[i] || requiredQuestions[i] === count) {
+        //             isAnswered = true;
+        //         }
+        //     }
+        //     if (!isAnswered) {
+        //         isDone = false;
+        //         break;
+        //     }
+        // }
+        //isDone && setFormDirty(true)
     }
 
     const displayQuestion = (question, index) => {
@@ -73,13 +77,37 @@ const ContributeForm = ({formIndex}) => {
         return displayQuestion(question, index)
     });
 
+    const calculateRequiredAnswered = () => {
+        // See if all required questions are answered
+        console.log("rerunning")
+        var isDone = true;
+        for (let i=0; i < requiredQuestions.length; i++) {
+            var isAnswered = false;
+            for(let j=0; j < answeredQuestions.length;j++) {
+                if (answeredQuestions[j].questionIndex === requiredQuestions[i]) {
+                    isAnswered = true;
+                }
+            }
+            if (!isAnswered) {
+                isDone = false;
+                break;
+            }
+        }
+        if (isDone) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     if (redirectCompleted) {
         return <Navigate to={redirectCompleted} />
     } else {
         return <form onSubmit={handleSubmit}>
             {getFormQuestions}
+            <CensusMap changeForm={formChanged} count={questions.length}/>
             {!formDirty && <p className="fillAll">Please fill out all required fields before submitting!</p>}
-            <input type="submit" className={formDirty ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
+            <input type="submit" className={calculateRequiredAnswered() == true ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
         </form>
     }
     
