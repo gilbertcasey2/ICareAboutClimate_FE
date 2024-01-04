@@ -8,6 +8,7 @@ const NavMenu = (props) => {
     <LinkButton className="left" linkTo="/" buttonNumber={0} value='The Project'></LinkButton>
     {/* <LinkButton className="right" linkTo="/climate-resources" buttonNumber={0} value='Climate Resources'></LinkButton> */}
     <LinkButton className="left" linkTo="/contribute" buttonNumber={0} value='Contribute'></LinkButton>
+    <LinkButton className="right" linkTo="/data-usage" buttonNumber={0} value='Data Usage'></LinkButton>
   </header>
 }
 

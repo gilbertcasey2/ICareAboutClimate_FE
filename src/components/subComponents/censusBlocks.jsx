@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useGoogleMap } from '@react-google-maps/api'
 import CensusJSON from '../../data/block-group.json'
 
@@ -6,13 +6,12 @@ import CensusJSON from '../../data/block-group.json'
 const CensusBlocks = ({isLoaded, updateCensusBlock}) => {
 
     const map = useGoogleMap();
-    const [selectedGeo, setSelectedGeo] = useState("");
 
     useEffect(() => {
         if (isLoaded) {
             loadMapShapes();
         }
-      }, [isLoaded]);
+      }, [isLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const loadMapShapes = () => {
         map.data.addGeoJson(CensusJSON);
@@ -29,7 +28,12 @@ const CensusBlocks = ({isLoaded, updateCensusBlock}) => {
             updateHoveredGeo(event)
         });
 
-        // Set mouseover event for each feature.
+        // Set mouseout event for each feature.
+        map.data.addListener('mouseout', function(event) {
+            updateOutGeo(event)
+        });
+
+        // Set click event for each feature.
         map.data.addListener('click', function(event) {
             updateSelectedGeo(event)
         });
@@ -40,10 +44,32 @@ const CensusBlocks = ({isLoaded, updateCensusBlock}) => {
         map.data.setStyle(function(feature) {
             var geoID = feature.getProperty('GEOID');
             var opacity;
-            if (geoID == selected) {
+            if (geoID === selected) {
                 opacity = 1;
-            } else if (geoID == _hoveredGeoID) {
+            } else if (geoID === _hoveredGeoID) {
                 opacity = .6;
+            } else {
+                opacity = 0;
+            }
+            return {
+                fillColor: "rgba(1, 56, 90, 0.4)",
+                fillOpacity: opacity,
+                strokeWeight: 1.5,
+                clickable: true,
+                strokeColor: '#1262A5'
+            };
+        });
+    }
+
+    const updateOutGeo = (event) => {
+        var _hoveredGeoID = event.feature.getProperty('GEOID');
+        map.data.setStyle(function(feature) {
+            var geoID = feature.getProperty('GEOID');
+            var opacity;
+            if (geoID === selected) {
+                opacity = 1;
+            } else if (geoID === _hoveredGeoID) {
+                opacity = 0;
             } else {
                 opacity = 0;
             }
@@ -59,13 +85,12 @@ const CensusBlocks = ({isLoaded, updateCensusBlock}) => {
 
     const updateSelectedGeo = (event) => {
         var _selectedGeoID = event.feature.getProperty('GEOID');
-        document.getElementById('info-box').textContent = _selectedGeoID;
         selected = _selectedGeoID;
         updateCensusBlock(_selectedGeoID)
         map.data.setStyle(function(feature) {
             var geoID = feature.getProperty('GEOID');
             var opacity;
-            if (geoID == selected) {
+            if (geoID === selected) {
                 opacity = 1;
             } else {
                 opacity = 0;

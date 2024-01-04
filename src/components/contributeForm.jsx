@@ -51,22 +51,6 @@ const ContributeForm = ({formIndex}) => {
 
         // update answered questions
         setAnsweredQuestions(prevState => ([...prevState, {"questionIndex" : count, "answerIndex" : index, "otherAnswer": response, "isMultipleChoice": multipleOptions}]));
-        // var isDone = true;
-
-        // // See if all required questions are answered
-        // for (let i=0; i < requiredQuestions.length; i++) {
-        //     var isAnswered = false;
-        //     for(let j=0; j < answeredQuestions.length;j++) {
-        //         if (answeredQuestions[j].questionIndex === requiredQuestions[i] || requiredQuestions[i] === count) {
-        //             isAnswered = true;
-        //         }
-        //     }
-        //     if (!isAnswered) {
-        //         isDone = false;
-        //         break;
-        //     }
-        // }
-        //isDone && setFormDirty(true)
     }
 
     const displayQuestion = (question, index) => {
@@ -107,7 +91,7 @@ const ContributeForm = ({formIndex}) => {
             {getFormQuestions}
             <CensusMap changeForm={formChanged} count={questions.length}/>
             {!formDirty && <p className="fillAll">Please fill out all required fields before submitting!</p>}
-            <input type="submit" className={calculateRequiredAnswered() == true ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
+            <input type="submit" className={calculateRequiredAnswered() === true ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
         </form>
     }
     

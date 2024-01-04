@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript } from '@react-google-maps/api';
 import CensusBlocks from './censusBlocks';
 
 const mapContainerStyle = {
@@ -47,6 +47,7 @@ const CensusMap = ({changeForm, count}) => {
   
   const updateCensusBlock = (censusBlock) => {
     setBlockSelected(censusBlock)
+    console.log("updated census block")
     changeForm(count, 1, false, censusBlock)
   }
 
@@ -62,7 +63,6 @@ const CensusMap = ({changeForm, count}) => {
       >
         <CensusBlocks isLoaded={isLoaded} updateCensusBlock={updateCensusBlock} />
       </GoogleMap>
-      <div id="info-box">I"M A BOX</div>
     </div>;
 }
 
