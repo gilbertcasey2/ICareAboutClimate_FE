@@ -23,8 +23,6 @@ const FormQuestion = ({question, options, changeForm, count, isRequired, hasFree
 
     const onChangeForm = (index) => {
         var temp_array = radioSelected;
-        console.log("index: " + index);
-        console.log("temp_array: " + temp_array)
         if (multipleOptions) {
             const item_index = temp_array.indexOf(index);
             if (item_index > -1) {
