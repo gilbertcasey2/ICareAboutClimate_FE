@@ -10,13 +10,13 @@ export class Question {
 
 const questions = []
 
-questions.push(new Question("Thinking about how serious the effects of climate change will be, how much do you think climate change will harm people in Maine during the next 10 years?", ["A great deal", "A moderate amount", "Only a little", "Not at all"], true));
+questions.push(new Question("How much do you think climate change will impact people in Maine over the next 10 years?", ["A great deal", "Somewhat", "Only a little", "Not at all"], true));
 
-questions.push(new Question("Maine has committed to the goal of reducing this pollution by 40% by the year 2030. Do you support or oppose the government taking action to meet this goal and reduce climate change pollution?", ["Strongly support", "Somewhat support", "Somewhat oppose", "Strongly oppose"], true));
+questions.push(new Question("Maine has committed to reducing greenhouse gas emissions by 40% by 2030. How do you feel about the government taking action  to meet this goal?", ["Strongly support", "Somewhat support", "Somewhat oppose", "Strongly oppose"], true));
 
-questions.push(new Question("How would you rank climate change as a political priority?", ["1", "2", "3", "4", "5 or greater"], true));
+questions.push(new Question("How would you rank climate change in your voting priorities?", ["Top priority", "High priority", "Medium priority", "Low priority", "Not a priority"], true));
 
-questions.push(new Question("In the past six months, have you engaged politically with climate change in any of the following ways?", ["Calling or emailing your elected officials", "Voting, advocating for, or commenting on climate legislation", "Discussing climate legislation with friends or family", "Other (please specify)"], true, true, true));
+questions.push(new Question("In the past six months, have you engaged politically with climate change in any of the following ways?", ["Discussing climate legislation with friends or family",  "Voting on climate legislation", "Calling or emailing your elected officials", "Commenting on or advocating for climate legislation", "Other (please specify)"], true, true, true));
 
 questions.push(new Question("How old are you?", ["< 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65<"]));
 

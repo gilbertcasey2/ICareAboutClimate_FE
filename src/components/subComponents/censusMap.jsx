@@ -51,7 +51,7 @@ const CensusMap = ({changeForm, count}) => {
   }
 
   return <div className="mapContainer">
-    <h6>Please select the census block that you live in. *</h6>
+    <h6>Where do you live? Please select your neighborhood. *</h6>
     <p>Census block: {blockSelected ? blockSelected : <span className='italic'>No census block selected</span>}</p>
       <GoogleMap
         id="googleMap"
