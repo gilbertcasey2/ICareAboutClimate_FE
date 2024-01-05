@@ -3,7 +3,6 @@ import ClimateResources from "./components/climateResources";
 import Home from "./components/home";
 import CompletedForm from "./components/completedForm";
 import { CENSUS_BLOCK_COUNT } from "./settings";
-import DataUsage from "./components/dataUsage";
 
 var AppRoutes = [
   {
@@ -22,10 +21,6 @@ var AppRoutes = [
   {
     path: '/complete',
     element: <CompletedForm />
-  },
-  {
-    path: '/data-usage',
-    element: <DataUsage />
   }
 ];
 
