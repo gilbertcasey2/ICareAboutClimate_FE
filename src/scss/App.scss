@@ -472,7 +472,7 @@ input[type="checkbox"] {
 
 /** the completed form page */
 
-.complete {
+.complete, .data-usage {
   width: 100%;
   background-image: url('../img/oneTexture.png');
   background-size: cover;
@@ -494,6 +494,26 @@ input[type="checkbox"] {
 
   h6 {
     margin-bottom: 40px;
+  }
+}
+
+.data-usage {
+  text-align: center;
+  h2 {
+    color: $lightGreen;
+    margin-bottom: 30px;
+  }
+  h4 {
+    color: $darkBlue;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  p {
+    max-width: 800px;
+    width: 100%;
+    text-align: left;
+    margin: auto;
   }
 }
 

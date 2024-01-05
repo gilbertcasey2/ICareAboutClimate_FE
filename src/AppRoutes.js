@@ -1,9 +1,9 @@
 import Contribute from "./components/contribute";
 import ClimateResources from "./components/climateResources";
-import DataUsage from "./components/dataUSage";
 import Home from "./components/home";
 import CompletedForm from "./components/completedForm";
 import { CENSUS_BLOCK_COUNT } from "./settings";
+import DataUsage from "./components/dataUsage";
 
 var AppRoutes = [
   {
