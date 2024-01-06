@@ -362,7 +362,7 @@ footer {
 
 /* Contribute Page (form) */
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
@@ -379,9 +379,12 @@ input[type="radio"] {
   top: 3px;
   cursor: pointer;
 }
-input[type="radio"]:checked {
+input[type="radio"]:checked, input[type="checkbox"]:checked {
   background-color: $darkBlue;
   border: 2px solid white;
+}
+input[type="checkbox"] {
+  border-radius: 2px;
 }
 .contribute {
   width: 100%;
@@ -409,7 +412,7 @@ input[type="radio"]:checked {
     font-size: 1rem;
   }
 
-  .form-question {
+  .form-question, .mapContainer {
     width: 100%;
     padding: 20px 40px;
     max-width: 1000px;
@@ -437,12 +440,39 @@ input[type="radio"]:checked {
       background-color: $beige;
       border: solid 1px $darkBeige;
     }
+    .inputHolder {
+      display: block;
+      padding: 5px 0px 0px 35px;
+    }
+    .optionalInput {
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid rgba(1,56,90,.64);
+      height: 35px;
+      background-color: $almostWhite;
+    }
+    .optionalInput:hover {
+      border: 1px solid rgba(1,56,90,1);
+    }
+    .inactive {
+      border: 1px solid rgba(1,56,90,.2);
+      pointer-events:none;
+      background-color: rgba(255,255,255,.3)
+    }
+  }
+}
+
+/** The Map */
+
+.mapContainer {
+  p {
+    padding-left: 10px;
   }
 }
 
 /** the completed form page */
 
-.complete {
+.complete, .data-usage {
   width: 100%;
   background-image: url('../img/oneTexture.png');
   background-size: cover;
@@ -464,6 +494,26 @@ input[type="radio"]:checked {
 
   h6 {
     margin-bottom: 40px;
+  }
+}
+
+.data-usage {
+  text-align: center;
+  h2 {
+    color: $lightGreen;
+    margin-bottom: 30px;
+  }
+  h4 {
+    color: $darkBlue;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  p {
+    max-width: 800px;
+    width: 100%;
+    text-align: left;
+    margin: auto;
   }
 }
 
