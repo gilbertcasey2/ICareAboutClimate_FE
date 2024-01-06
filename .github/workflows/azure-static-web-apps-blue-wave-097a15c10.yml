@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     env:
-      REQUEST_AUTH_KEY: ${{ secrets.REQUESTAUTHENTICATIONKEY }}
+      REACT_APP_REQUEST_AUTH_KEY: ${{ secrets.REQUESTAUTHENTICATIONKEY }}
     steps:
       - uses: actions/checkout@v3
         with:
