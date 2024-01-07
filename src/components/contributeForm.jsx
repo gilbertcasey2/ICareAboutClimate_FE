@@ -16,7 +16,10 @@ const ContributeForm = ({formIndex}) => {
     const [redirectCompleted, setRedirectCompleted] = useState();
 
     async function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
+        if (!calculateRequiredAnswered()) {
+            return;
+        }
         var result = await submitForm(answeredQuestions,localStorage.getItem('formID'), formIndex);
         localStorage.setItem('formCompleted', true)
         if (result != null) {
@@ -63,7 +66,6 @@ const ContributeForm = ({formIndex}) => {
 
     const calculateRequiredAnswered = () => {
         // See if all required questions are answered
-        console.log("rerunning")
         var isDone = true;
         for (let i=0; i < requiredQuestions.length; i++) {
             var isAnswered = false;
@@ -91,7 +93,7 @@ const ContributeForm = ({formIndex}) => {
             {getFormQuestions}
             <CensusMap changeForm={formChanged} count={questions.length}/>
             {!formDirty && <p className="fillAll">Please fill out all required fields before submitting!</p>}
-            <input type="submit" className={calculateRequiredAnswered() === true ? "button main form-btn" : "button main form-btn hidden"} value="Submit" />
+            <input type="submit" onSubmit={e => handleSubmit(e)} className={calculateRequiredAnswered() === true ? "button main form-btn" : "button main form-btn hidden"} value="Submit"/>
         </form>
     }
     
