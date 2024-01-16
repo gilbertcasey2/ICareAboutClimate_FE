@@ -1,6 +1,7 @@
 import React, { useEffect} from 'react';
 import { useGoogleMap } from '@react-google-maps/api'
-import CensusJSON from '../../data/block-group.json'
+// import CensusJSON from '../../data/block-group.json'
+import CensusJSON2 from '../../data/cb_2020_23_bg_500k.json'
 
 
 const CensusBlocks = ({isLoaded, updateCensusBlock}) => {
@@ -14,7 +15,7 @@ const CensusBlocks = ({isLoaded, updateCensusBlock}) => {
       }, [isLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const loadMapShapes = () => {
-        map.data.addGeoJson(CensusJSON);
+        map.data.addGeoJson(CensusJSON2);
         map.data.setStyle({
             fillColor: "rgba(1, 56, 90, 0.4)",
             fillOpacity: 0,
