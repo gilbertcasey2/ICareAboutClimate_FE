@@ -478,7 +478,7 @@ input[type="checkbox"] {
   background-image: url('../img/oneTexture.png');
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: 150px;
+  padding: 150px 20px 20px 20px;
   text-align: center;
   box-sizing: border-box;
   position: relative;
@@ -549,6 +549,11 @@ input[type="checkbox"] {
     }
   }
 
+  header .linkBox {
+    margin: 0px 5px;
+    font-size: 1rem;
+  }
+
   .contribute {
     h1 {
       margin-bottom: 30px;
@@ -603,7 +608,6 @@ input[type="checkbox"] {
     .linkBox {
       float: none;
       flex-grow: 1;
-      margin: 0px 15px;
     }
 
   }
@@ -651,6 +655,11 @@ input[type="checkbox"] {
     p {
       font-size: 1.05rem;
     }
+    padding: 20px;
+  }
+
+  .data-usage {
+    padding-top: 100px;
   }
   
 }
