@@ -1,1 +1,1 @@
-export const CENSUS_BLOCK_COUNT = 50;
+export const CENSUS_BLOCK_COUNT = 70;
