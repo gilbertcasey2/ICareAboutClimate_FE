@@ -16,7 +16,7 @@ questions.push(new Question("Maine has committed to reducing greenhouse gas emis
 
 questions.push(new Question("How would you rank climate change in your voting priorities?", ["Top priority", "High priority", "Medium priority", "Low priority", "Not a priority"], true));
 
-questions.push(new Question("In the past six months, have you engaged politically with climate change in any of the following ways?", ["Discussing climate legislation with friends or family",  "Voting on climate legislation", "Calling or emailing your elected officials", "Commenting on or advocating for climate legislation", "Other (please specify)"], true, true, true));
+questions.push(new Question("In the past six months, have you engaged politically with climate change in any of the following ways?", ["Discussing climate legislation with friends or family",  "Voting on climate legislation", "Calling or emailing your elected officials", "Commenting on or advocating for climate legislation", "No political engagement", "Other (please specify)"], true, true, true));
 
 questions.push(new Question("How old are you?", ["< 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65<"]));
 
